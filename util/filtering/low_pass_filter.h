@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef MEDIAPIPE_GRAPHS_POSE_TRACKING_CALCULATORS_LOW_PASS_FILTER_H_
-#define MEDIAPIPE_GRAPHS_POSE_TRACKING_CALCULATORS_LOW_PASS_FILTER_H_
+#ifndef MEDIAPIPE_UTIL_FILTERING_LOW_PASS_FILTER_H_
+#define MEDIAPIPE_UTIL_FILTERING_LOW_PASS_FILTER_H_
 
 #include <memory>
 
@@ -44,4 +44,4 @@ class LowPassFilter {
 
 }  // namespace mediapipe
 
-#endif  // MEDIAPIPE_GRAPHS_POSE_TRACKING_CALCULATORS_LOW_PASS_FILTER_H_
+#endif  // MEDIAPIPE_UTIL_FILTERING_LOW_PASS_FILTER_H_

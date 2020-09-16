@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mediapipe/graphs/pose_tracking/calculators/relative_velocity_filter.h"
+#include "mediapipe/util/filtering/relative_velocity_filter.h"
 
 #include <algorithm>
 #include <cmath>
@@ -20,6 +20,7 @@
 
 #include "absl/time/time.h"
 #include "mediapipe/framework/port/gtest.h"
+#include "mediapipe/framework/port/logging.h"
 
 namespace mediapipe {
 

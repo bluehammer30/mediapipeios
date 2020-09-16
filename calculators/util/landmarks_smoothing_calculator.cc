@@ -13,12 +13,12 @@
 // limitations under the License.
 
 #include "absl/algorithm/container.h"
+#include "mediapipe/calculators/util/landmarks_smoothing_calculator.pb.h"
 #include "mediapipe/framework/calculator_framework.h"
 #include "mediapipe/framework/formats/landmark.pb.h"
 #include "mediapipe/framework/port/ret_check.h"
 #include "mediapipe/framework/timestamp.h"
-#include "mediapipe/graphs/pose_tracking/calculators/landmarks_smoothing_calculator.pb.h"
-#include "mediapipe/graphs/pose_tracking/calculators/relative_velocity_filter.h"
+#include "mediapipe/util/filtering/relative_velocity_filter.h"
 
 namespace mediapipe {
 
@@ -38,17 +38,17 @@ using ::mediapipe::RelativeVelocityFilter;
 // with sides parallel to axis.
 float GetObjectScale(const NormalizedLandmarkList& landmarks, int image_width,
                      int image_height) {
-  const auto& [lm_min_x, lm_max_x] = absl::c_minmax_element(
+  const auto& lm_minmax_x = absl::c_minmax_element(
       landmarks.landmark(),
       [](const auto& a, const auto& b) { return a.x() < b.x(); });
-  const float x_min = lm_min_x->x();
-  const float x_max = lm_max_x->x();
+  const float x_min = lm_minmax_x.first->x();
+  const float x_max = lm_minmax_x.second->x();
 
-  const auto& [lm_min_y, lm_max_y] = absl::c_minmax_element(
+  const auto& lm_minmax_y = absl::c_minmax_element(
       landmarks.landmark(),
       [](const auto& a, const auto& b) { return a.y() < b.y(); });
-  const float y_min = lm_min_y->y();
-  const float y_max = lm_max_y->y();
+  const float y_min = lm_minmax_y.first->y();
+  const float y_max = lm_minmax_y.second->y();
 
   const float object_width = (x_max - x_min) * image_width;
   const float object_height = (y_max - y_min) * image_height;
@@ -191,8 +191,8 @@ class VelocityFilter : public LandmarksFilter {
 //     input_stream: "NORM_LANDMARKS:pose_landmarks"
 //     input_stream: "IMAGE_SIZE:image_size"
 //     output_stream: "NORM_FILTERED_LANDMARKS:pose_landmarks_filtered"
-//     node_options: {
-//       [type.googleapis.com/mediapipe.LandmarksSmoothingCalculatorOptions] {
+//     options: {
+//       [mediapipe.LandmarksSmoothingCalculatorOptions.ext] {
 //         velocity_filter: {
 //           window_size: 5
 //           velocity_scale: 10.0

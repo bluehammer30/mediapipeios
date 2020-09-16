@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("//mediapipe/framework/port:build_config.bzl", "mediapipe_proto_library")
-
 licenses(["notice"])
 
-package(default_visibility = ["//visibility:public"])
+package(default_visibility = [
+    "//mediapipe:__subpackages__",
+])
 
 cc_library(
     name = "low_pass_filter",
@@ -55,31 +55,7 @@ cc_test(
     deps = [
         ":relative_velocity_filter",
         "//mediapipe/framework/port:gtest_main",
+        "//mediapipe/framework/port:logging",
         "@com_google_absl//absl/time",
     ],
-)
-
-mediapipe_proto_library(
-    name = "landmarks_smoothing_calculator_proto",
-    srcs = ["landmarks_smoothing_calculator.proto"],
-    visibility = ["//visibility:public"],
-    deps = [
-        "//mediapipe/framework:calculator_proto",
-    ],
-)
-
-cc_library(
-    name = "landmarks_smoothing_calculator",
-    srcs = ["landmarks_smoothing_calculator.cc"],
-    visibility = ["//visibility:public"],
-    deps = [
-        ":landmarks_smoothing_calculator_cc_proto",
-        ":relative_velocity_filter",
-        "//mediapipe/framework:calculator_framework",
-        "//mediapipe/framework:timestamp",
-        "//mediapipe/framework/formats:landmark_cc_proto",
-        "//mediapipe/framework/port:ret_check",
-        "@com_google_absl//absl/algorithm:container",
-    ],
-    alwayslink = 1,
 )

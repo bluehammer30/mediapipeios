@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef MEDIAPIPE_GRAPHS_POSE_TRACKING_CALCULATORS_RELATIVE_VELOCITY_FILTER_H_
-#define MEDIAPIPE_GRAPHS_POSE_TRACKING_CALCULATORS_RELATIVE_VELOCITY_FILTER_H_
+#ifndef MEDIAPIPE_UTIL_FILTERING_RELATIVE_VELOCITY_FILTER_H_
+#define MEDIAPIPE_UTIL_FILTERING_RELATIVE_VELOCITY_FILTER_H_
 
 #include <deque>
 #include <memory>
 
 #include "absl/time/time.h"
-#include "mediapipe/graphs/pose_tracking/calculators/low_pass_filter.h"
+#include "mediapipe/util/filtering/low_pass_filter.h"
 
 namespace mediapipe {
 
@@ -87,4 +87,4 @@ class RelativeVelocityFilter {
 
 }  // namespace mediapipe
 
-#endif  // MEDIAPIPE_GRAPHS_POSE_TRACKING_CALCULATORS_RELATIVE_VELOCITY_FILTER_H_
+#endif  // MEDIAPIPE_UTIL_FILTERING_RELATIVE_VELOCITY_FILTER_H_

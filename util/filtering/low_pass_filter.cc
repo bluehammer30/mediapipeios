@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mediapipe/graphs/pose_tracking/calculators/low_pass_filter.h"
+#include "mediapipe/util/filtering/low_pass_filter.h"
 
 #include "absl/memory/memory.h"
 #include "mediapipe/framework/port/logging.h"

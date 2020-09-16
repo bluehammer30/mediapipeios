@@ -16,7 +16,7 @@ syntax = "proto2";
 
 package mediapipe;
 
-import "mediapipe/framework/calculator.proto";
+import "mediapipe/framework/calculator_options.proto";
 
 message LandmarksSmoothingCalculatorOptions {
   extend CalculatorOptions {

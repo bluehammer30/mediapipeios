@@ -12,24 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mediapipe/graphs/pose_tracking/calculators/low_pass_filter.h"
+#ifndef MEDIAPIPE_PYTHON_PYBIND_VALIDATED_GRAPH_CONFIG_H_
+#define MEDIAPIPE_PYTHON_PYBIND_VALIDATED_GRAPH_CONFIG_H_
 
-#include "mediapipe/framework/port/gtest.h"
+#include "pybind11/pybind11.h"
 
 namespace mediapipe {
+namespace python {
 
-TEST(LowPassFilterTest, LowPassFilterBasicChecks) {
-  auto filter = absl::make_unique<LowPassFilter>(1.0f);
-  EXPECT_EQ(2.0f, filter->Apply(2.0f));
-  EXPECT_EQ(100.0f, filter->Apply(100.0f));
+void ValidatedGraphConfigSubmodule(pybind11::module* module);
 
-  filter = absl::make_unique<LowPassFilter>(0.0f);
-  EXPECT_EQ(2.0f, filter->Apply(2.0f));
-  EXPECT_EQ(2.0f, filter->Apply(100.0f));
-
-  filter = absl::make_unique<LowPassFilter>(0.5f);
-  EXPECT_EQ(2.0f, filter->Apply(2.0f));
-  EXPECT_EQ(51.0f, filter->Apply(100.0f));
-}
-
+}  // namespace python
 }  // namespace mediapipe
+
+#endif  // MEDIAPIPE_PYTHON_PYBIND_VALIDATED_GRAPH_CONFIG_H_
