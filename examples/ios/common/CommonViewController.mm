@@ -125,7 +125,7 @@ static const char* kVideoQueueLabel = "com.google.mediapipe.example.videoQueue";
       NSString* cameraPosition =
           [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CameraPosition"];
       if (cameraPosition.length > 0 && [cameraPosition isEqualToString:@"back"]) {
-        self.cameraSource.cameraPosition = AVCaptureDevicePositionBack;
+        self.cameraSource.cameraPosition = AVCaptureDevicePositionFront;
       } else {
         self.cameraSource.cameraPosition = AVCaptureDevicePositionFront;
         // When using the front camera, mirror the input for a more natural look.
